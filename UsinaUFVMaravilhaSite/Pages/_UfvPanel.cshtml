@@ -30,6 +30,13 @@
             <button class="btn btn-breaker btn-breaker-fechar" data-breaker="@(Model.CommandPrefix)Fechar" data-ufv-nome="@Model.Nome">Fechar Disjuntor</button>
         </div>
 
+        <div class="tile-label metrics-section-label">Tensão MT no relé (ponto de acoplamento)</div>
+        <div class="metrics-grid">
+            <div class="metric"><span>V<sub>AB</sub></span><strong data-field="rele-vab">--</strong> kV</div>
+            <div class="metric"><span>V<sub>BC</sub></span><strong data-field="rele-vbc">--</strong> kV</div>
+            <div class="metric"><span>V<sub>CA</sub></span><strong data-field="rele-vca">--</strong> kV</div>
+        </div>
+
         <div class="power-block">
             <span class="power-value" data-field="power">0,0</span>
             <span class="power-unit">kW</span>
@@ -39,6 +46,7 @@
             </div>
         </div>
 
+        <div class="tile-label metrics-section-label">Tensão/corrente BT (Smartlogger)</div>
         <div class="metrics-grid">
             <div class="metric"><span>V<sub>AB</sub></span><strong data-field="vab">--</strong> V</div>
             <div class="metric"><span>V<sub>BC</sub></span><strong data-field="vbc">--</strong> V</div>

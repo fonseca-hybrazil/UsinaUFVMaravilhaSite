@@ -4,10 +4,16 @@
     var POLL_MS = 3000;
 
     var numberFmt = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    var numberFmt2 = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
     function fmt(value) {
         if (value === null || value === undefined || Number.isNaN(value)) return "--";
         return numberFmt.format(value);
+    }
+
+    function fmtKv(volts) {
+        if (volts === null || volts === undefined || Number.isNaN(volts)) return "--";
+        return numberFmt2.format(volts / 1000);
     }
 
     function setField(panel, field, text) {
@@ -53,6 +59,11 @@
 
         applyComms(panel, ufv.comunicacaoRele);
         applyBreaker(panel, ufv.disjuntor);
+
+        var r = ufv.rele || {};
+        setField(panel, "rele-vab", fmtKv(r.vab));
+        setField(panel, "rele-vbc", fmtKv(r.vbc));
+        setField(panel, "rele-vca", fmtKv(r.vca));
 
         var g = ufv.geracao || {};
         setField(panel, "power", fmt(g.activePowerKw));
