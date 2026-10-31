@@ -1,0 +1,49 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Monitoramento";
+}
+
+<div class="dashboard">
+    <header class="topbar">
+        <div class="topbar-title">
+            <h1>Usina UFV Maravilha</h1>
+            <span>Monitoramento em tempo real</span>
+        </div>
+        <div class="topbar-status">
+            <div class="conn-indicator" id="conn-indicator">
+                <span class="dot" id="conn-dot"></span>
+                <span id="conn-text">Conectando...</span>
+            </div>
+            <span class="last-update" id="last-update">--:--:--</span>
+            <button class="btn btn-reset btn-reset-geral" data-reset="geral">Reset Geral</button>
+        </div>
+    </header>
+
+    <section class="parque-summary">
+        <div class="tile tile-parque">
+            <span class="tile-label">Potência Ativa - Parque</span>
+            <span class="tile-value" id="parque-potencia">0,0</span>
+            <span class="tile-unit">kW</span>
+        </div>
+        <div class="tile tile-parque">
+            <span class="tile-label">Total Diário - Parque</span>
+            <span class="tile-value" id="parque-diario">0,0</span>
+            <span class="tile-unit">MWh</span>
+        </div>
+        <div class="tile tile-parque">
+            <span class="tile-label">Total Geral - Parque</span>
+            <span class="tile-value" id="parque-geral">0,0</span>
+            <span class="tile-unit">MWh</span>
+        </div>
+    </section>
+
+    <section class="ufv-grid">
+        <partial name="_UfvPanel" model='("ufv1", "UFV-01", "Ufv1")' />
+        <partial name="_UfvPanel" model='("ufv2", "UFV-02", "Ufv2")' />
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/dashboard.js" asp-append-version="true"></script>
+}

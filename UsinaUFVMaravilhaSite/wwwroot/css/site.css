@@ -1,0 +1,392 @@
+:root {
+  --bg: #11151c;
+  --panel: #171d27;
+  --panel-border: #263040;
+  --text: #e6ebf1;
+  --text-dim: #8a96a8;
+  --accent: #ff8a3d;
+  --ok: #2ecc71;
+  --alert: #ff3b3b;
+  --idle: #4a5568;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.dashboard {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 16px 20px 40px;
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--panel-border);
+  margin-bottom: 20px;
+}
+
+.topbar-title h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.topbar-title span {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.topbar-status {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.conn-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.last-update {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--idle);
+  display: inline-block;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.dot.ok {
+  background: var(--ok);
+  box-shadow: 0 0 6px var(--ok);
+}
+
+.dot.alert {
+  background: var(--alert);
+  box-shadow: 0 0 6px var(--alert);
+}
+
+/* Buttons */
+.btn {
+  cursor: pointer;
+  border: 1px solid var(--panel-border);
+  background: #1f2733;
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover {
+  background: #2a3442;
+  border-color: var(--accent);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.btn-reset-geral {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Parque summary */
+.parque-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.tile {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tile-label {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tile-value {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.tile-unit {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+}
+
+.tile-parque .tile-value {
+  color: var(--accent);
+}
+
+/* UFV grid */
+.ufv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 950px) {
+  .ufv-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .parque-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ufv-panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 18px 20px 20px;
+}
+
+.ufv-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.ufv-panel-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.rele-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+/* Single-line diagram */
+.single-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 4px 20px;
+  overflow-x: auto;
+}
+
+.sl-node {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--panel-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  background: #1b2330;
+}
+
+.sl-wire {
+  width: 20px;
+  height: 2px;
+  background: var(--panel-border);
+}
+
+.sl-wire-grid {
+  width: 14px;
+}
+
+.sl-breaker {
+  min-width: 34px;
+  height: 34px;
+  border-radius: 4px;
+  border: 2px solid var(--idle);
+  background: #1b2330;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.sl-breaker.fechado {
+  border-color: var(--ok);
+  color: var(--ok);
+  box-shadow: 0 0 8px rgba(46, 204, 113, 0.5);
+}
+
+.sl-breaker.aberto {
+  border-color: var(--alert);
+  color: var(--alert);
+  box-shadow: 0 0 8px rgba(255, 59, 59, 0.5);
+}
+
+.sl-arrow {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+}
+
+.sl-grid-label {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  margin-left: 4px;
+}
+
+/* Breaker controls */
+.breaker-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.btn-breaker {
+  flex: 1;
+  font-weight: 600;
+}
+
+.btn-breaker-abrir {
+  border-color: var(--alert);
+  color: var(--alert);
+}
+
+.btn-breaker-fechar {
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+/* Power block */
+.power-block {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.power-value {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.power-unit {
+  color: var(--text-dim);
+  font-size: 1rem;
+}
+
+.power-sub {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  text-align: right;
+}
+
+/* Metrics grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 12px 0;
+  font-size: 0.8rem;
+}
+
+.metric {
+  background: #1b2330;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-dim);
+}
+
+.metric strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Yield tiles */
+.yield-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.yield-tiles .tile {
+  padding: 10px 12px;
+}
+
+.yield-tiles .tile-value {
+  font-size: 1.2rem;
+}
+
+/* Protections */
+.protections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.protection-pill {
+  font-size: 0.72rem;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #1b2330;
+  border: 1px solid var(--panel-border);
+  color: var(--text-dim);
+}
+
+.protection-pill.active {
+  background: rgba(255, 59, 59, 0.15);
+  border-color: var(--alert);
+  color: var(--alert);
+  animation: pulse 1.4s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}

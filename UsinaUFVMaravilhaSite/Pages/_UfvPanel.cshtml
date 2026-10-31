@@ -1,0 +1,76 @@
+@model (string Id, string Nome, string CommandPrefix)
+
+<div class="ufv-panel" data-ufv="@Model.Id">
+    <div class="ufv-panel-header">
+        <h2>@Model.Nome</h2>
+        <div class="rele-indicator">
+            <span class="dot" data-field="comms-dot"></span>
+            <span data-field="comms-text">Relé</span>
+        </div>
+    </div>
+
+    <div class="ufv-body">
+        <div class="single-line">
+            <div class="sl-node sl-painel" title="Painéis fotovoltaicos">☀</div>
+            <div class="sl-wire"></div>
+            <div class="sl-node sl-inversor" title="Smartlogger / Inversores">⚡</div>
+            <div class="sl-wire"></div>
+            <div class="sl-node sl-trafo" title="Transformador">◬</div>
+            <div class="sl-wire"></div>
+            <div class="sl-breaker" data-field="breaker-box" title="Disjuntor de acoplamento">
+                <span data-field="breaker-text">--</span>
+            </div>
+            <div class="sl-wire sl-wire-grid"></div>
+            <div class="sl-arrow">↑</div>
+            <span class="sl-grid-label">Rede</span>
+        </div>
+
+        <div class="breaker-controls">
+            <button class="btn btn-breaker btn-breaker-abrir" data-breaker="@(Model.CommandPrefix)Abrir" data-ufv-nome="@Model.Nome">Abrir Disjuntor</button>
+            <button class="btn btn-breaker btn-breaker-fechar" data-breaker="@(Model.CommandPrefix)Fechar" data-ufv-nome="@Model.Nome">Fechar Disjuntor</button>
+        </div>
+
+        <div class="power-block">
+            <span class="power-value" data-field="power">0,0</span>
+            <span class="power-unit">kW</span>
+            <div class="power-sub">
+                <span>FP <strong data-field="pf">--</strong></span>
+                <span>Reativa <strong data-field="reactive">--</strong> kVAr</span>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric"><span>V<sub>AB</sub></span><strong data-field="vab">--</strong> V</div>
+            <div class="metric"><span>V<sub>BC</sub></span><strong data-field="vbc">--</strong> V</div>
+            <div class="metric"><span>V<sub>CA</sub></span><strong data-field="vca">--</strong> V</div>
+            <div class="metric"><span>I<sub>A</sub></span><strong data-field="ia">--</strong> A</div>
+            <div class="metric"><span>I<sub>B</sub></span><strong data-field="ib">--</strong> A</div>
+            <div class="metric"><span>I<sub>C</sub></span><strong data-field="ic">--</strong> A</div>
+        </div>
+
+        <div class="yield-tiles">
+            <div class="tile">
+                <span class="tile-label">Total Diário</span>
+                <span class="tile-value" data-field="daily">0,0</span>
+                <span class="tile-unit">MWh</span>
+            </div>
+            <div class="tile">
+                <span class="tile-label">Total Geral</span>
+                <span class="tile-value" data-field="total">0,0</span>
+                <span class="tile-unit">MWh</span>
+            </div>
+        </div>
+
+        <div class="protections">
+            <span class="protection-pill" data-field="prot-trip-t1">TRIP T1</span>
+            <span class="protection-pill" data-field="prot-86-t2">86 T2</span>
+            <span class="protection-pill" data-field="prot-59-1">59-1</span>
+            <span class="protection-pill" data-field="prot-59n1">59N1</span>
+            <span class="protection-pill" data-field="prot-trafo-alarme">Trafo Alarme</span>
+            <span class="protection-pill" data-field="prot-trafo-trip">Trafo Trip</span>
+            <span class="protection-pill" data-field="prot-trafo-falha">Trafo Falha</span>
+        </div>
+
+        <button class="btn btn-reset" data-reset="@Model.Id">Reset @Model.Nome</button>
+    </div>
+</div>
